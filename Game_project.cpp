@@ -21,15 +21,18 @@ void clear_enemy_ver();
 void move_enemy_ver();
 void print_enemy_dia();
 void print_front();
+void print_bonus();
 int pX = 20,pY = 35;
 int eX = 2, eY = 2;
 int e2X = 110 , e2Y = 9;
 int e3X = 110, e3Y = 2;
+int points=0; 
 main()
 {
 
 	system("cls");
 	print_front();
+
 	getch();
 	system("cls");
 	print_maze();
@@ -44,6 +47,7 @@ main()
 		if (GetAsyncKeyState(VK_RIGHT))
 		{
 			move_Right();
+			
 		}
 		if (GetAsyncKeyState(VK_UP))
 		{
@@ -56,8 +60,10 @@ main()
 		move_enemy_ver();
 		move_enemy_hor();
 
-		Sleep(200);
+		Sleep(100);
+		
 	}
+	
 }
 void gotoxy(int X,int Y)
 {
@@ -90,39 +96,43 @@ void erase_player()
 
 void move_Left()
 {
-	if (getCharAtxy(pX - 1, pY) == ' '  &&  getCharAtxy(pX - 1, pY+1) == ' '  &&  getCharAtxy(pX - 1, pY+2) == ' ')
+	if ((getCharAtxy(pX - 1, pY) != '#'  &&  getCharAtxy(pX - 1, pY+1) != '#'  &&  getCharAtxy(pX - 1, pY+2) != '#') && (getCharAtxy(pX - 1, pY) != '|'  &&  getCharAtxy(pX - 1, pY+1) != '|'  &&  getCharAtxy(pX - 1, pY+2) != '|'))
 	{
 		erase_player();
 		pX--;
 		print_player();
 	}
+	
 }
 void move_Right()
 {
-	if (getCharAtxy(pX + 8, pY) == ' '  &&  getCharAtxy(pX + 8, pY+1) == ' '  &&  getCharAtxy(pX + 8, pY+2) == ' ')
+	if ((getCharAtxy(pX + 8, pY) != '#'  &&  getCharAtxy(pX + 8, pY+1) != '#'  &&  getCharAtxy(pX + 8, pY+2) != '#')  &&  (getCharAtxy(pX + 8, pY) != '|'  &&  getCharAtxy(pX + 8, pY+1) != '|'  &&  getCharAtxy(pX + 8, pY+2) != '|'))
 	{
 		erase_player();
 		pX++;
 		print_player();
 	}
+	
 }
 void move_Up()
 {
-	if (getCharAtxy(pX , pY  - 1) == ' '  &&  getCharAtxy(pX +1, pY  - 1) == ' '  &&  getCharAtxy(pX +2, pY  - 1) == ' '  &&  getCharAtxy(pX+3 , pY  - 1) == ' '  &&  getCharAtxy(pX +4, pY  - 1) == ' '  &&  getCharAtxy(pX +5, pY  - 1) == ' '  &&  getCharAtxy(pX +6, pY  - 1) == ' '   &&  getCharAtxy(pX +7, pY  - 1) == ' ')
+	if (getCharAtxy(pX , pY  - 1) != '#'  &&  getCharAtxy(pX +1, pY  - 1) != '#'  &&  getCharAtxy(pX +2, pY  - 1) != '#'  &&  getCharAtxy(pX+3 , pY  - 1) != '#'  &&  getCharAtxy(pX +4, pY  - 1) != '#'  &&  getCharAtxy(pX +5, pY  - 1) != '#'  &&  getCharAtxy(pX +6, pY  - 1) != '#'   &&  getCharAtxy(pX +7, pY  - 1) != '#')
 	{
 		erase_player();
 		pY--;
 		print_player();
 	}
+	
 }
 void move_Down()
 {
-	if (getCharAtxy(pX, pY + 3) == ' '  &&  getCharAtxy(pX+1, pY + 3) == ' '  &&  getCharAtxy(pX+2, pY + 3) == ' '  &&  getCharAtxy(pX+3, pY + 3) == ' '  &&  getCharAtxy(pX+4, pY + 3) == ' '  &&  getCharAtxy(pX+5, pY + 3) == ' '  &&  getCharAtxy(pX+6, pY + 4) == ' '   &&  getCharAtxy(pX+7, pY + 4) == ' ')
+	if (getCharAtxy(pX, pY + 3) != '#'  &&  getCharAtxy(pX+1, pY + 3) != '#'  &&  getCharAtxy(pX+2, pY + 3) != '#'  &&  getCharAtxy(pX+3, pY + 3) != '#'  &&  getCharAtxy(pX+4, pY + 3) != '#'  &&  getCharAtxy(pX+5, pY + 3) != '#'  &&  getCharAtxy(pX+6, pY + 4) != '#'   &&  getCharAtxy(pX+7, pY + 4) != '#')
 	{
 		erase_player();
 		pY++;
 		print_player();
 	}
+	
 }			
        
 char getCharAtxy(short int x, short int y)
@@ -219,38 +229,39 @@ void print_maze()
 	cout <<"---------------------------------------------------------------------------------------------------------------------------"<<endl;
 	cout <<"###########################################################################################################  --------------"<<endl;
 	cout <<"#|$$$$$$$$$$$$$|                              #                                    #                      |# |            |"<<endl;
-	cout <<"#|$$$$$$$$$$$$$|       #######                #                                    #                      |# |            |"<<endl;
-	cout <<"#|$$$$$$$$$$$$$|       #     #                #                                    #                      |# |            |"<<endl;
+	cout <<"#|$$$$$$$$$$$$$|       #######                #      @                             #                      |# |            |"<<endl;
+	cout <<"#|$$$$$$$$$$$$$|       #     #                #                                    #             @        |# |            |"<<endl;
 	cout <<"#|$$$$$$$$$$$$$|       #     #            #####                      ###################                  |# |            |"<<endl;
 	cout <<"#|                     #######                                                                            |# |            |"<<endl;
 	cout <<"#|                                                                                                        |# |            |"<<endl;
-	cout <<"#|                             ############                     #                                         |# |            |"<<endl;
-	cout <<"#|                             #                                #                                         |# |            |"<<endl;
+	cout <<"#|                @            ############                     #                                         |# |            |"<<endl;
+	cout <<"#|                             #                        @       #                                         |# |            |"<<endl;
 	cout <<"#|                             #                                #                #########################|# |            |"<<endl;
 	cout <<"#|                ##############                                #                                         |# |            |"<<endl;
 	cout <<"#|                #                                             #                                         |# |            |"<<endl;
-	cout <<"#|                #                                             #                                         |# |            |"<<endl;
+	cout <<"#|                #   @                                         #                  @                      |# |            |"<<endl;
 	cout <<"#|                #                                  #####################                                |# |            |"<<endl;
-	cout <<"#|                #                   #######               #                                ####         |# |            |"<<endl;
+	cout <<"#|     @          #                   #######               #                                ####         |# |            |"<<endl;
 	cout <<"#|                #                   #     #               #                                #            |# |            |"<<endl;
 	cout <<"#|                #                   #     #               #                                #            |# |            |"<<endl;
 	cout <<"#|                #                   #######         #######                                #            |# |            |"<<endl;
 	cout <<"#|                #                                                                ###########            |# |            |"<<endl;
-	cout <<"#|         ##################              #                                      #                       |# |            |"<<endl;
-	cout <<"#|                                         #                                      #                       |# |            |"<<endl;
+	cout <<"#|         ##################              #            @                         #                       |# |            |"<<endl;
+	cout <<"#|                                         #                                      #   @                   |# |            |"<<endl;
 	cout <<"#|                                         #      ################                #                       |# |            |"<<endl;
 	cout <<"#|                                         #              #                       #                       |# |            |"<<endl;
 	cout <<"#|                                         #              #                       #                       |# |            |"<<endl;
 	cout <<"#|                    ###########                         #                ########                       |# |            |"<<endl;
 	cout <<"#|                    #         #                         #                #                              |# |            |"<<endl;
-	cout <<"#|                    #         #                         #                #                              |# |            |"<<endl;
-	cout <<"#|#####################         #############################              #####################          |# |            |"<<endl;
+	cout <<"#|                    #    @    #                         #                #                              |# |            |"<<endl;
+	cout <<"#|#####################         #############################              #####################     @    |# |            |"<<endl;
 	cout <<"#|                                                                                                        |# |            |"<<endl;
 	cout <<"#|                                                                                                        |# |            |"<<endl;
 	cout <<"#|                                                                                                        |# |            |"<<endl;
 	cout <<"#|                                                                                                        |# |            |"<<endl;
 	cout <<"############################################################################################################ --------------"<<endl;
 }
+
 
 void print_front()
 {
@@ -271,11 +282,11 @@ void print_front()
 	Sleep(75);
 	cout <<"                                        88  88  88  88 88   88  88 88         " <<endl;
 	Sleep(75);
-	cout <<"                                         88 8888 88 88   88  88888   8888       " <<endl;
+	cout <<"                                        88 8888 88 88   88  88888   8888       " <<endl;
 	Sleep(75);
-	cout <<"                                          888  888 888888888 88   88    88     " <<endl;
+	cout <<"                                         888  888 888888888 88   88    88     " <<endl;
 	Sleep(75);
-	cout <<"                                           88  88  88     88 88    888888        " <<endl;
+	cout <<"                                          88  88  88     88 88    888888        " <<endl;
 	Sleep(120);
 	cout <<endl<<endl<<endl<<endl<<endl;
 	cout <<"                                            PRESS    ANY   KEY   TO   CONTINUE  ";

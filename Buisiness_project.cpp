@@ -17,6 +17,7 @@ void delete_record();
 void search_record();
 void exit_menu();
 void print_box();
+void exit_menu();
 string user_name,password;
 main()
 {	
@@ -274,12 +275,28 @@ void search_record()
 	// Function call for  search record
 	cout <<"Search data";
 }
-
 void exit_menu()
+
 {
-	// Function call for  exit menu
-	cout <<"EXit Menu";
+
+    system("cls");
+    cout <<endl<<endl;
+    cout <<endl<<endl;
+    cout <<endl<<endl;
+    cout <<endl<<endl;
+    cout <<endl<<endl;
+    cout <<"                @@@@@@@ @   @  @@  @@    @ @   @         @   @  @@  @  @    @"<<endl;
+    Sleep(70);
+    cout <<"                   @    @   @ @  @ @ @   @ @  @          @   @ @  @ @  @    @"<<endl;
+    Sleep(70);
+    cout <<"                   @    @@@@@ @@@@ @  @  @ @@@            @@@  @  @ @  @    @"<<endl;
+    Sleep(70);
+    cout <<"                   @    @   @ @  @ @   @ @ @  @            @   @  @ @  @     "<<endl;
+    Sleep(70);
+    cout <<"                   @    @   @ @  @ @    @@ @   @           @    @@   @@     @"<<endl;
 }
+
+
 
 void print_front()
 {	cout <<endl<<endl<<endl<<endl;
